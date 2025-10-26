@@ -7,46 +7,70 @@ import (
 	"github.com/google/uuid"
 )
 
-func DerefInt(p *int) int {
+// Deref safely dereferences a pointer, returning the zero value if nil
+func Deref[T any](p *T) T {
 	if p == nil {
-		return 0
+		var zero T
+		return zero
 	}
 	return *p
+}
+
+// Legacy functions for backward compatibility
+func DerefInt(p *int) int {
+	return Deref(p)
+}
+
+func DerefInt8(ptr *int8) int8 {
+	return Deref(ptr)
+}
+
+func DerefInt16(ptr *int16) int16 {
+	return Deref(ptr)
+}
+
+func DerefInt32(ptr *int32) int32 {
+	return Deref(ptr)
 }
 
 func DerefInt64(p *int64) int64 {
-	if p == nil {
-		return 0
-	}
-	return *p
+	return Deref(p)
 }
 
 func DerefUint(p *uint) uint {
-	if p == nil {
-		return 0
-	}
-	return *p
+	return Deref(p)
+}
+
+func DerefUint8(p *uint8) uint8 {
+	return Deref(p)
+}
+
+func DerefUint16(p *uint16) uint16 {
+	return Deref(p)
+}
+
+func DerefUint32(p *uint32) uint32 {
+	return Deref(p)
+}
+
+func DerefUint64(p *uint64) uint64 {
+	return Deref(p)
+}
+
+func DerefFloat32(p *float32) float32 {
+	return Deref(p)
 }
 
 func DerefFloat64(p *float64) float64 {
-	if p == nil {
-		return 0.0
-	}
-	return *p
+	return Deref(p)
 }
 
 func DerefString(p *string) string {
-	if p == nil {
-		return ""
-	}
-	return *p
+	return Deref(p)
 }
 
 func DerefBool(p *bool) bool {
-	if p == nil {
-		return false
-	}
-	return *p
+	return Deref(p)
 }
 
 func DerefTime(p *time.Time) time.Time {
@@ -96,4 +120,22 @@ func DerefNullTime(nt sql.NullTime) time.Time {
 		return nt.Time
 	}
 	return time.Time{}
+}
+
+func DerefEnumToString[T ~string](value *T) string {
+	if value == nil {
+		return ""
+	}
+	return string(*value)
+}
+
+func DerefMapStringString(ptr *map[string]string) map[string]string {
+	if ptr == nil {
+		return nil
+	}
+	clone := make(map[string]string, len(*ptr))
+	for k, v := range *ptr {
+		clone[k] = v
+	}
+	return clone
 }

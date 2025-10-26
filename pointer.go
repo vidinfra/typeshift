@@ -6,6 +6,9 @@ import (
 	"github.com/google/uuid"
 )
 
+// Ptr functions to create pointers from values
+func Ptr[T any](v T) *T { return &v }
+
 // Int types
 func Int(v int) *int       { return &v }
 func Int8(v int8) *int8    { return &v }
