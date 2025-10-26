@@ -38,3 +38,17 @@ func TestPointerFunctions(t *testing.T) {
 	id := uuid.New()
 	assert.Equal(t, id, *UUID(id))
 }
+
+func TestGenericPointer(t *testing.T) {
+	assert.Equal(t, "generic", *Ptr("generic"))
+	assert.Equal(t, 12345, *Ptr(12345))
+	assert.Equal(t, true, *Ptr(true))
+	assert.Equal(t, 3.14, *Ptr(3.14))
+	assert.Equal(t, time.Hour, *Ptr(time.Hour))
+
+	id := uuid.New()
+	assert.Equal(t, id, *Ptr(id))
+
+	assert.Equal(t, []int{1, 2, 3}, *Ptr([]int{1, 2, 3}))
+	assert.Equal(t, map[string]int{"a": 1}, *Ptr(map[string]int{"a": 1}))
+}
