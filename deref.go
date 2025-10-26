@@ -16,61 +16,102 @@ func Deref[T any](p *T) T {
 	return *p
 }
 
-// Legacy functions for backward compatibility
 func DerefInt(p *int) int {
-	return Deref(p)
+	if p == nil {
+		return 0
+	}
+	return *p
 }
 
 func DerefInt8(ptr *int8) int8 {
-	return Deref(ptr)
+	if ptr == nil {
+		return 0
+	}
+	return *ptr
 }
 
 func DerefInt16(ptr *int16) int16 {
-	return Deref(ptr)
+	if ptr == nil {
+		return 0
+	}
+	return *ptr
 }
 
 func DerefInt32(ptr *int32) int32 {
-	return Deref(ptr)
+	if ptr == nil {
+		return 0
+	}
+	return *ptr
 }
 
 func DerefInt64(p *int64) int64 {
-	return Deref(p)
+	if p == nil {
+		return 0
+	}
+	return *p
 }
 
 func DerefUint(p *uint) uint {
-	return Deref(p)
+	if p == nil {
+		return 0
+	}
+	return *p
 }
 
 func DerefUint8(p *uint8) uint8 {
-	return Deref(p)
+	if p == nil {
+		return 0
+	}
+	return *p
 }
 
 func DerefUint16(p *uint16) uint16 {
-	return Deref(p)
+	if p == nil {
+		return 0
+	}
+	return *p
 }
 
 func DerefUint32(p *uint32) uint32 {
-	return Deref(p)
+	if p == nil {
+		return 0
+	}
+	return *p
 }
 
 func DerefUint64(p *uint64) uint64 {
-	return Deref(p)
+	if p == nil {
+		return 0
+	}
+	return *p
 }
 
 func DerefFloat32(p *float32) float32 {
-	return Deref(p)
+	if p == nil {
+		return 0.0
+	}
+	return *p
 }
 
 func DerefFloat64(p *float64) float64 {
-	return Deref(p)
+	if p == nil {
+		return 0.0
+	}
+	return *p
 }
 
 func DerefString(p *string) string {
-	return Deref(p)
+	if p == nil {
+		return ""
+	}
+	return *p
 }
 
 func DerefBool(p *bool) bool {
-	return Deref(p)
+	if p == nil {
+		return false
+	}
+	return *p
 }
 
 func DerefTime(p *time.Time) time.Time {
